@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 7992dcb60ad07cf478d0a028a4e34e7c
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 5d3116a41c543e849a7e942ee8ab9f41
+  - enabled: 0
+    path: Assets/Scenes/Settings.unity
+    guid: d7d946c5b17e0f74c9843b33191e4bd0
+  - enabled: 0
     path: Assets/Scenes/Maze.unity
     guid: 14936a50bd98138429e9c8384db7af32
   m_configObjects: {}

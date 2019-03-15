@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 7607560572978287886}
   - component: {fileID: 7607560572978287889}
   - component: {fileID: 7607560572978287883}
-  - component: {fileID: 7607560572978287880}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -113,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892845121cbd9bc4ea2aa4b53d2d106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
   speed: 10
   jumpForce: 2
   xGrowRate: 0.1
@@ -124,6 +124,7 @@ MonoBehaviour:
   countText: {fileID: 0}
   winText: {fileID: 0}
   loseText: {fileID: 0}
+  livesText: {fileID: 0}
   aud: {fileID: 0}
   audiowin: {fileID: 8300000, guid: b941894b6fa7b7c43a4ac2028eb8ddbb, type: 3}
   audiolose: {fileID: 8300000, guid: a4ca388b5a8477d498ca456ac0afac9b, type: 3}
@@ -241,25 +242,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &7607560572978287880
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7607560572978287888}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f65e810ef36ac9d43b3f6bc72790912c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2778894746167779991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,31 +253,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
-        type: 3}
-      propertyPath: countText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
-        type: 3}
-      propertyPath: xGrowRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
-        type: 3}
-      propertyPath: yGrowRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
-        type: 3}
-      propertyPath: zGrowRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693642863722952601, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5693642863722952602, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
         type: 3}
@@ -350,6 +307,31 @@ PrefabInstance:
     - target: {fileID: 5693642863722952602, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
+        type: 3}
+      propertyPath: countText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
+        type: 3}
+      propertyPath: xGrowRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
+        type: 3}
+      propertyPath: yGrowRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693642863722952582, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
+        type: 3}
+      propertyPath: zGrowRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693642863722952601, guid: ceb2cf83de9b09145af2e90e3d0be9b3,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

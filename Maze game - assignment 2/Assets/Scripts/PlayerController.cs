@@ -5,7 +5,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-   
+    public Animator animator;
     public int lives = 3;
     public float speed;
     public float jumpForce = 2.0f;
@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
     public float playerMass = 1.0f;
     public float massGrowRate = 0.1f;
     public int minimumPickupRequired = 11;
+
+    //bomb attributes
+    
+    public float power = 10.0f;
+    public float radius = 5.0f;
+    public float upForce = 1.0f;
     
     public Text countText;
     public Text winText;
@@ -39,7 +45,7 @@ public class PlayerController : MonoBehaviour
         rb.mass = playerMass;
         SetCountText();
         aud = GetComponent<AudioSource>();
-
+        animator = GetComponent<Animator>();
     }
 
     private void SetCountText()
@@ -50,6 +56,10 @@ public class PlayerController : MonoBehaviour
             countText.text = "Coins: " + count.ToString();
     }
 
+    void update()
+    {
+
+    }
     void FixedUpdate()
     {
         if (gameEnded) return;
@@ -65,6 +75,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed);
+       
     }
 
     void OnTriggerEnter(Collider other)
@@ -97,6 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Damage"))
         {
+            Detonate();
             Damage();
         }
 
@@ -114,23 +126,39 @@ public class PlayerController : MonoBehaviour
 
             winText.gameObject.SetActive(true);
             gameEnded = true;
+            animator.SetBool("Win", true);
         }
 
         void lose()
         {
-
+           
             loseText.gameObject.SetActive(true);
+            
             gameEnded = true;
         }
      
         void Damage()
         {
-            lives -= 1;
+            lives -=1;
             livesText.text = "Lives: " + lives;
             if (lives < 1)
             {
+                animator.SetBool("Die", true);
                 lose();
             }
+        }
+        void Detonate()
+        {
+            Vector3 explosionPosition = gameObject.transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb2 = hit.GetComponent<Rigidbody>();
+                if (rb2 != null)
+                {
+                    rb2.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
+                }
+            } 
         }
     }
 }
