@@ -6,6 +6,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
+   // public ParticleSystem ps;
     public int lives = 3;
     public float speed;
     public float jumpForce = 2.0f;
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float playerMass = 1.0f;
     public float massGrowRate = 0.1f;
     public int minimumPickupRequired = 11;
-
+  
     //bomb attributes
     
     public float power = 10.0f;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip audiowin;
     public AudioClip audiolose;
     public AudioClip audiopickup;
+    public AudioClip audioexplosion;
     private Rigidbody rb;
     private int count;
     private bool gameEnded = false;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // ps = GetComponent<ParticleSystem>();
         winText.gameObject.SetActive(false);
         loseText.gameObject.SetActive(false);
         jump = new Vector3(0.0f, 2.0f, 0.0f);
@@ -108,8 +111,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Damage"))
         {
+            aud.clip = audioexplosion;
+            aud.Play();
             Detonate();
             Damage();
+
+            //ps.emission.enabled = true;
+
+          
         }
 
 
@@ -158,7 +167,8 @@ public class PlayerController : MonoBehaviour
                 {
                     rb2.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
                 }
-            } 
+            }
+            other.gameObject.SetActive(false);
         }
     }
 }

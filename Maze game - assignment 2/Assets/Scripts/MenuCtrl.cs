@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneSwitch : MonoBehaviour
+public class MenuCtrl : MonoBehaviour
 {
-    public void SceneSwitcher()
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneName);
     }
   
 }
