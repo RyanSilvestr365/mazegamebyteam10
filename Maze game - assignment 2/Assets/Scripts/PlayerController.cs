@@ -104,8 +104,6 @@ public class PlayerController : MonoBehaviour
 
             else
             {
-                aud.clip = audiolose;
-                aud.Play();
                 lose();
             }
         }
@@ -140,7 +138,9 @@ public class PlayerController : MonoBehaviour
 
         void lose()
         {
-           
+
+            aud.clip = audiolose;
+            aud.Play();
             loseText.gameObject.SetActive(true);
             
             gameEnded = true;
