@@ -6,7 +6,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
-   // public ParticleSystem ps;
+    //public ParticleSystem ps;
     public int lives = 3;
     public float speed;
     public float jumpForce = 2.0f;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public Text winText;
     public Text loseText;
     public Text livesText;
+    public Text instructions;
 
     public AudioSource aud;
     public AudioClip audiowin;
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        // ps = GetComponent<ParticleSystem>();
+    
         winText.gameObject.SetActive(false);
         loseText.gameObject.SetActive(false);
         jump = new Vector3(0.0f, 2.0f, 0.0f);
@@ -49,6 +50,9 @@ public class PlayerController : MonoBehaviour
         SetCountText();
         aud = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        instructions.gameObject.SetActive(false);
+        //ps.GetComponent<ParticleSystem>();
+
     }
 
     private void SetCountText()
@@ -93,6 +97,11 @@ public class PlayerController : MonoBehaviour
             IncreaseCount();
             SetCountText();
         }
+        else if (other.CompareTag("instructions"))
+        {
+            instructions.gameObject.SetActive(true);
+            StartCoroutine("WaitForSec");
+        }
         else if (other.gameObject.CompareTag("Target"))
         {
             if (count > minimumPickupRequired)
@@ -113,13 +122,8 @@ public class PlayerController : MonoBehaviour
             aud.Play();
             Detonate();
             Damage();
-
-            //ps.emission.enabled = true;
-
-          
+            // ps.enableEmission = true;
         }
-
-
         void IncreaseCount()
         {
             count = count + 1;
@@ -170,6 +174,11 @@ public class PlayerController : MonoBehaviour
             }
             other.gameObject.SetActive(false);
         }
+    }
+    IEnumerator WaitForSec()
+    {
+        yield return new WaitForSeconds(5);
+        instructions.gameObject.SetActive(false);
     }
 }
 

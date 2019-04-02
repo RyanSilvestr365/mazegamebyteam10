@@ -8,6 +8,7 @@ TagManager:
   - other
   - Target
   - Damage
+  - instructions
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,18 @@ guid: 892845121cbd9bc4ea2aa4b53d2d106b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - ps: {fileID: 198000012777718758, guid: 4dda84404ccf2374ab568123249f1e0d, type: 3}
+  - countText: {instanceID: 0}
+  - winText: {instanceID: 0}
+  - loseText: {instanceID: 0}
+  - livesText: {instanceID: 0}
+  - aud: {instanceID: 0}
+  - audiowin: {instanceID: 0}
+  - audiolose: {instanceID: 0}
+  - audiopickup: {instanceID: 0}
+  - audioexplosion: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
