@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             if (count > minimumPickupRequired)
             {
+                SceneManager.LoadScene("Level 2");
                 aud.clip = audiowin;
                 aud.Play();
                 win();

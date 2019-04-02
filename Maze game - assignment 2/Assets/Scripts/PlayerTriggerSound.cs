@@ -8,7 +8,7 @@ public class PlayerTriggerSound : MonoBehaviour
     public AudioClip SoundToPlay ;
     //volume
     //public float Volume;
-    AudioSource audio;
+    public  AudioSource audio;
     public bool alreadyPlayed = false;
     void Start()
     {
