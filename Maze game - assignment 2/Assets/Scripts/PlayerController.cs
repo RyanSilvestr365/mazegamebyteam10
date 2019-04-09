@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+    //public Animator animator;
     //public ParticleSystem ps;
     public int lives = 3;
     public float speed;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         rb.mass = playerMass;
         SetCountText();
         aud = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         instructions.gameObject.SetActive(false);
         //ps.GetComponent<ParticleSystem>();
 
@@ -120,11 +120,20 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Damage"))
         {
-            aud.clip = audioexplosion;
-            aud.Play();
             Detonate();
             Damage();
             // ps.enableEmission = true;
+        }
+        //bullet knockback
+        else if(other.gameObject.CompareTag("Bullet"))
+        {
+            Damage();
+            
+            Rigidbody rb3=GetComponent<Rigidbody>(); ;
+            
+            Vector3 moveDirection = rb3.transform.position - other.transform.position;
+            rb3.AddForce(moveDirection.normalized * 200f);
+            other.gameObject.SetActive(false);
         }
         void IncreaseCount()
         {
@@ -139,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
             winText.gameObject.SetActive(true);
             gameEnded = true;
-            animator.SetBool("Win", true);
+           // animator.SetBool("Win", true);
         }
 
         void lose()
@@ -154,14 +163,17 @@ public class PlayerController : MonoBehaviour
      
         void Damage()
         {
+            aud.clip = audioexplosion;
+            aud.Play();
             lives -=1;
             livesText.text = "Lives: " + lives;
             if (lives < 1)
             {
-                animator.SetBool("Die", true);
+               // animator.SetBool("Die", true);
                 lose();
             }
         }
+
         void Detonate()
         {
             Vector3 explosionPosition = gameObject.transform.position;
